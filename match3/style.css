@@ -1,0 +1,80 @@
+body{
+  font-family: Verdana, Arial;
+  text-align: center;
+}
+h1{
+  margin: 20px;
+}
+#tabuleiro{
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    border-style: none none none none;
+    border-width: 1px;
+    border-color: #000;
+}
+.match3{
+    display: inline-block;
+    font-family: Verdana, Arial;
+    background-color: #f9fac0;
+   border: 1px solid #a51f22;
+}
+.casa{
+    box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 2px;
+    cursor: pointer;
+}
+.casa:hover{
+    border: 2px solid #fff;
+    padding: 0;
+}
+
+.casa img{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+}
+.selecionado{
+    border: 2px solid #fff;
+    padding: 0;
+}
+#placar{
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: right;
+    width: 250px;
+    height: 100%;
+    padding: 10px;
+    margin: 0;
+    text-align: left;
+    border-style: none;
+    
+}
+.peca0{
+    background-color: #89f673;
+}
+.peca1{
+    background-color: #f6d273;
+}
+.peca2{
+    background-color: #d273f6;
+}
+.peca3{
+    background-color: #f68573;
+}
+.peca4{
+    background-color: #73acf6;
+}

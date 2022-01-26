@@ -1,0 +1,97 @@
+*, *::after, *::before {/*todas as tags, todas antes e todas depois*/
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: grid;
+  /*separa o corpo em grid de 2 colunas de mesmo tamanho*/
+  /* grid-template-columns: repeat(2, 7rem);*/ 
+  /*separa o corpo em grid de 3 linhas dos respectivos tamanhos */
+  /* grid-template-rows: 10rem 2rem 10rem;  */
+  gap: .5rem;
+  cursor: pointer;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.game {
+  height: 700px;
+  width: 550px;
+  display: grid;
+  grid-template-columns: repeat(2, 40%); /*separa o corpo em grid de 2 colunas*/
+  grid-template-rows: 45% 10% 45%; /*separa o corpo em grid de 3 linhas dos respectivos tamanhos*/
+  grid-column: span 2;
+}
+
+.deck {
+  height: 99%;
+  width: 99%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  border-radius: 1rem;
+  color: white;
+  user-select: none; /*previne usuario de selecionar texto*/
+}
+
+.computer-deck {
+  background-color: green;
+}
+
+.player-deck {
+  /* background-color: blue; */
+  /* background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/54/Card_back_06.svg'); */
+  background-image: url('Card_back_06.svg');
+  background-size: cover;
+}
+
+.text {
+  font-size: 2rem;
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none; /*previne usuario de selecionar texto*/
+}
+
+.card {
+  position: relative;
+  height: 99%;
+  width: 99%;
+  border: 1px solid black;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  user-select: none; /*previne usuario de selecionar texto*/
+}
+
+.card.red{
+  color: red;
+}
+
+.card.black{
+  color: black;
+}
+
+.card::after,
+.card::before {
+  position: absolute;
+  content: attr(data-value); /*pega o valor do atributo e insere antes e depois da tag com classe 'card'*/
+  font-size: 2rem;
+}
+
+.card::after {
+  bottom: .5rem;
+  right: .5rem;
+  transform: rotate(180deg); /*cabeça para baixo*/
+}
+
+.card::before {
+  top: .5rem;
+  left: .5rem;
+}
