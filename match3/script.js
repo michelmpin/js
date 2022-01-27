@@ -7,6 +7,11 @@ match3.imagens = [
     'https://cdn-icons-png.flaticon.com/512/1792/1792967.png', //battle
     'https://cdn-icons-png.flaticon.com/512/6515/6515320.png' //potion  
 ];
+const T_HOME = 0;
+const T_COIN = 1;
+const T_PERSON = 2;
+const T_BATTLE = 3;
+const T_POTION = 4;
 match3.selecionado = '';
 match3.placar = new Object();
 match3.placar.pontos = 0;
@@ -16,14 +21,21 @@ match3.placar.sorte = 0;
 match3.placar.trincas = 0;
 match3.placar.quadras = 0;
 match3.placar.quinas = 0;
+//added
+match3.placar.homes = 0;
+match3.placar.coins = 0;
+match3.placar.persons = 0;
+match3.placar.battles = 0;
+match3.placar.potions = 0;
 //objeto anição possui variáveis para configurar as animações de transição
 match3.animacao = new Object();
-match3.animacao.velocidade = 100;
+match3.animacao.velocidade = 400;
 //objeto célula possui variáveis para a montagem do tabuleiro
 match3.celula = new Object();
 match3.celula.largura = 40;
 //cria o array para a montagem do tabuleiro
 match3.criaTabuleiro = function (linhas, colunas){
+    $("#MedidaTabuleiro").html(linhas + 'x' + colunas);
     match3.linhas = linhas;
     match3.colunas = colunas;
     match3.tabuleiro = new Object();
@@ -63,7 +75,7 @@ match3.montaTabuleiro = function(container){
         $("#tabuleiro").append('</br>');
     });
     
-    $(container).append('<div id="placar">SCORE: <span id="nPontos">0</span><br>matches: <span id="nCombinacoes">0</span><br>match 3: <span id="nTrincas">0</span><br>match 4: <span id="nQuadras">0</span><br>match 5: <span id="nQuinas">0</span><br>lucky: <span id="nSorte">0</span><br><br>moves: <span id="nMovimentos">0</span></div>');
+    $(container).append('<div id="placar"><strong>SCORE: <span id="nPontos">0</span></strong><br><br>matches: <span id="nCombinacoes">0</span><br>match 3: <span id="nTrincas">0</span><br>match 4: <span id="nQuadras">0</span><br>match 5: <span id="nQuinas">0</span><br>lucky: <span id="nSorte">0</span><br><br><strong>moves: <span id="nMovimentos">0</span></strong><br><br>Houses: <span id="nHome">0</span><br>Coins: <span id="nCoin">0</span><br>Persons: <span id="nPerson">0</span><br>Battles: <span id="nBattle">0</span><br>Potions: <span id="nPotion">0</span></div>');
     
     var larguraContainer = match3.celula.largura * match3.tabuleiro.linhas[0].length + 250; 
     var larguraTabuleiro = match3.celula.largura * match3.tabuleiro.linhas[0].length; 
@@ -76,6 +88,7 @@ match3.montaTabuleiro = function(container){
 };
 
 match3.placar.incrementa = function(placar){
+    // console.log('incrementa ' + placar);
     switch(placar){
         case 'combinacao' : 
             match3.placar.combinacoes++;
@@ -109,11 +122,36 @@ match3.placar.incrementa = function(placar){
             match3.placar.movimentos++;
             $("#nMovimentos").html(match3.placar.movimentos);
             break;
-            
+        case T_HOME :
+            console.log('incremento T_HOME');
+            match3.placar.homes++;
+            $("#nHome").html(match3.placar.homes);
+            break; 
+        case T_COIN :
+            console.log('incremento T_COIN');
+            match3.placar.coins++;
+            $("#nCoin").html(match3.placar.coins);
+            break;
+        case T_PERSON :
+            console.log('incremento T_PERSON');
+            match3.placar.persons++;
+            $("#nPerson").html(match3.placar.persons);
+            break;
+        case T_BATTLE :
+            console.log('incremento T_BATTLE');
+            match3.placar.battles++;
+            $("#nBattle").html(match3.placar.battles);
+            break;
+        case T_POTION :
+            console.log('incremento T_POTION');
+            match3.placar.potions++;
+            $("#nPotion").html(match3.placar.potions);
+            break;
     }
     
 }
 match3.pedeTroca = function(id){
+    // console.log('pedeTroca');
     if(match3.selecionado === ''){
         match3.selecionado = id;
         $("#" + id).addClass("selecionado");
@@ -143,6 +181,7 @@ match3.pedeTroca = function(id){
     }
 }
 match3.troca = function(id1, id2){
+    // console.log('troca');
     var peca1 = match3.tabuleiro.linhas[$("#" + id1).data('linha')][$("#" + id1).data('coluna')];
     var peca2 = match3.tabuleiro.linhas[$("#" + id2).data('linha')][$("#" + id2).data('coluna')];
     var title1 = $("#" + id1).attr('title');
@@ -200,6 +239,8 @@ match3.troca = function(id1, id2){
 };
 
 match3.somePeca = function(id){
+    // console.log('somePeca ' + id + ' Tipo '+ $( "#" + id).data('peca'));
+    match3.placar.incrementa($( "#" + id).data('peca'));
     var linha = $( "#" + id).data('linha');
     var coluna = $( "#" + id).data('coluna');
     var pecaAntiga = match3.tabuleiro.linhas[linha][coluna];
@@ -257,6 +298,7 @@ match3.caiPecaVisual = function(id, novaPeca, pecaAntiga){
 };
 
 match3.verificaTudo2 = function(sorte){
+    // console.log('verificaTudo2 ' + sorte);
     sorte = (sorte === undefined)? false : true ;
     var totalDeLinhas = match3.tabuleiro.linhas.length -1;
     var totalDeColunas = match3.tabuleiro.linhas[0].length -1;
@@ -274,6 +316,7 @@ match3.verificaTudo2 = function(sorte){
     }
 };
 match3.verificaMatch = function(linha, coluna){
+    // console.log('verificaMatch '+ linha + '-' + coluna);
     var peca = match3.tabuleiro.linhas[linha][coluna];
     var tempPeca = peca;
     var tempLinha = linha;
@@ -343,7 +386,7 @@ match3.verificaMatch = function(linha, coluna){
 };
 
 $("body").ready(function(){
-    match3.criaTabuleiro(15,10);
+    match3.criaTabuleiro(Math.floor(Math.random() * 6) + 8,Math.floor(Math.random() * 6) + 8);
     match3.montaTabuleiro('#exemplo');
 
     $(".casa").on("click", function(){

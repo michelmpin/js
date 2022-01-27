@@ -23,6 +23,7 @@ h1{
 }
 .casa{
     box-sizing: border-box;
+    border-radius: 50%;
    -webkit-box-sizing: border-box;
    -moz-box-sizing: border-box;
     position: relative;
