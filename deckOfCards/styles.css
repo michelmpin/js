@@ -38,7 +38,9 @@ body {
 }
 
 .computer-deck {
-  background-color: green;
+  /* background-color: green; */
+  background-image: url('Card_back_06_red.svg');
+  background-size: cover;
 }
 
 .player-deck {
