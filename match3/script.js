@@ -1,3 +1,4 @@
+(()=>{ // torna inacessível ao console
 var match3 = new Object();
 // informando quais imagens devem ser usadas
 match3.imagens = [
@@ -7,11 +8,6 @@ match3.imagens = [
     'https://cdn-icons-png.flaticon.com/512/1792/1792967.png', //battle
     'https://cdn-icons-png.flaticon.com/512/6515/6515320.png' //potion  
 ];
-const T_HOME = 0;
-const T_COIN = 1;
-const T_PERSON = 2;
-const T_BATTLE = 3;
-const T_POTION = 4;
 match3.selecionado = '';
 match3.placar = new Object();
 match3.placar.pontos = 0;
@@ -22,10 +18,15 @@ match3.placar.trincas = 0;
 match3.placar.quadras = 0;
 match3.placar.quinas = 0;
 //added
+const T_HOME = 0;
 match3.placar.homes = 0;
+const T_COIN = 1;
 match3.placar.coins = 0;
+const T_PERSON = 2;
 match3.placar.persons = 0;
+const T_BATTLE = 3;
 match3.placar.battles = 0;
+const T_POTION = 4;
 match3.placar.potions = 0;
 //objeto anição possui variáveis para configurar as animações de transição
 match3.animacao = new Object();
@@ -123,27 +124,27 @@ match3.placar.incrementa = function(placar){
             $("#nMovimentos").html(match3.placar.movimentos);
             break;
         case T_HOME :
-            console.log('incremento T_HOME');
+            // console.log('incremento T_HOME');
             match3.placar.homes++;
             $("#nHome").html(match3.placar.homes);
             break; 
         case T_COIN :
-            console.log('incremento T_COIN');
+            // console.log('incremento T_COIN');
             match3.placar.coins++;
             $("#nCoin").html(match3.placar.coins);
             break;
         case T_PERSON :
-            console.log('incremento T_PERSON');
+            // console.log('incremento T_PERSON');
             match3.placar.persons++;
             $("#nPerson").html(match3.placar.persons);
             break;
         case T_BATTLE :
-            console.log('incremento T_BATTLE');
+            // console.log('incremento T_BATTLE');
             match3.placar.battles++;
             $("#nBattle").html(match3.placar.battles);
             break;
         case T_POTION :
-            console.log('incremento T_POTION');
+            // console.log('incremento T_POTION');
             match3.placar.potions++;
             $("#nPotion").html(match3.placar.potions);
             break;
@@ -398,4 +399,4 @@ $("body").ready(function(){
     
 });
 
-
+})() // torna inacessível ao console
